@@ -60,9 +60,9 @@ then
 				then
 					 clear
 					 # Variáveis de configuração do Kerberos
-					 REALM="PTI.INTRA"
-					 SERVERS="ptispo01dc01.pti.intra"
-					 ADMIN="ptispo01dc01.pti.intra"
+					 REALM="HABE.INTRAER"
+					 SERVERS="samba4.habe.intraer"
+					 ADMIN="samba4.habe.intraer"
 					 NTP="a.st1.ntp.br"
 					 #
 					 # Exportando o recurso de Noninteractive do Debconf
