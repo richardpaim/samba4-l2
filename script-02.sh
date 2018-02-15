@@ -80,7 +80,7 @@ then
 				then		
 					 clear
 					 # Exportação da variável de configuração
-					 FQDN=".pti.intra"
+					 FQDN=".habe.intraer"
 					 #
 					 
 					 echo -e "Usuário é `whoami`, continuando a executar o Script-02.sh"
@@ -125,7 +125,10 @@ then
 
 					 echo -e "Instalação do SAMBA-4, CUPS, DHCP, QUOTA, BIND-DNS e CLAMAV e suas dependências, aguarde..."
 					 #Instalando os principais pacotes para o funcionamento correto dos serviços de rede
-					 apt-get -y install samba samba-common smbclient cifs-utils samba-vfs-modules samba-testsuite samba-dbg samba-dsdb-modules cups cups-bsd cups-common cups-core-drivers cups-pdf printer-driver-gutenprint printer-driver-hpcups hplip antiword docx2txt gutenprint-doc gutenprint-locales isc-dhcp-server winbind quota quotatool ldb-tools libnss-winbind libpam-winbind nmap bind9 bind9utils clamav clamav-base clamav-daemon clamav-freshclam clamdscan clamfs clamav-testfiles clamav-unofficial-sigs arc cabextract p7zip unzip unrar libclamunrar7 kcc tree &>> $LOG
+					 apt-get -y install samba samba-common smbclient cifs-utils samba-vfs-modules samba-testsuite samba-dbg samba-dsdb-modules 
+					 cups cups-bsd cups-common cups-core-drivers cups-pdf printer-driver-gutenprint printer-driver-hpcups 
+					 hplip antiword docx2txt gutenprint-doc gutenprint-locales winbind quota quotatool ldb-tools libn
+					 ss-winbind libpam-winbind nmap bind9utils clamav clamav-base clamav-daemon clamav-freshclam clamdscan clamfs clamav-testfiles clamav-unofficial-sigs arc cabextract p7zip unzip unrar libclamunrar7 kcc tree &>> $LOG
 					 echo -e "Instalação dos Serviços de Rede Feito com Sucesso!!!"
 					 echo
 					 echo ============================================================ >> $LOG 
