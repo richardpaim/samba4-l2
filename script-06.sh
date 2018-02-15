@@ -79,14 +79,14 @@ then
 				then		
 					 clear
 					 # Variáveis de configuração do SAMBA4
-					 REALM="PTI.INTRA"
-					 DOMAIN="PTI"
+					 REALM="HABE.INTRAER"
+					 DOMAIN="SAMBASERVER"
 					 ROLE="dc"
-					 DNS="BIND9_DLZ"
-					 PASSWORD="pti@2016"
+					 DNS="SAMBA_INTERNAL"
+					 PASSWORD="kunh4t4@"
 					 LEVEL="2008_R2"
-					 SITE="PTI.INTRA"
-					 IP="192.168.1.10"
+					 SITE="HABE.INTRAER"
+					 IP="10.108.57.120"
 					 #
 					 echo -e "Usuário é `whoami`, continuando a executar o Script-06.sh"
 					 echo
