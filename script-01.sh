@@ -61,9 +61,8 @@ then
 					 clear
 					 # Variáveis de configuração do Kerberos
 					 REALM="HABE.INTRAER"
-					 SERVERS="samba4.habe.intraer"
-					 ADMIN="samba4.habe.intraer"
-					 NTP="a.st1.ntp.br"
+					 SERVERS="sambaserver.habe.intraer"
+					 ADMIN="sambaserver.habe.intraer"
 					 #
 					 # Exportando o recurso de Noninteractive do Debconf
 					 export DEBIAN_FRONTEND="noninteractive"
@@ -72,7 +71,6 @@ then
 					 echo
 					 echo -e "Instalação dos principais pacotes de rede e suporte ao sistema de arquivos"
 					 echo
-					 echo -e "NTP (Network Time Protocol) Servidor de Data é Hora"
 					 echo -e "KRB5 (Kerberos) Protocolo de Autenticação Segura"
 					 echo -e "NFS (Network File System) Protocolo de Transferência de Arquivos"
 					 echo -e "ACL (Access Control List) Permissões de Arquivos e Diretórios"
@@ -102,7 +100,7 @@ then
 
 					 echo -e "Instalando as Dependências da Parte de Rede, aguarde..."
 					 #Instalando os principais pacotes para o funcionamento correto dos serviços de rede
-					 apt-get -y install ntp ntpdate build-essential libacl1-dev libattr1-dev libblkid-dev libgnutls-dev libreadline-dev python-dev libpam0g-dev python-dnspython gdb pkg-config libpopt-dev libldap2-dev dnsutils libbsd-dev docbook-xsl libcups2-dev nfs-kernel-server nfs-common acl attr debconf-utils screenfetch figlet sysv-rc-conf &>> $LOG
+					 apt-get -y install build-essential libacl1-dev libattr1-dev libblkid-dev libgnutls-dev libreadline-dev python-dev libpam0g-dev python-dnspython gdb pkg-config libpopt-dev libldap2-dev dnsutils libbsd-dev docbook-xsl libcups2-dev nfs-kernel-server nfs-common acl attr debconf-utils screenfetch figlet sysv-rc-conf &>> $LOG
 					 echo -e "Instalação das Dependências Feita com Sucesso!!!"
 					 echo
 					 echo ============================================================ >> $LOG
@@ -142,94 +140,6 @@ then
 					 clear
 					 echo ============================================================ >> $LOG
 					
-					 echo -e "Configurando o Serviço do NTP"
-					 echo -e "Pressione <Enter> para continuar"
-					 echo
-					 read
-					 
-					 echo -e "Fazendo o Backup do arquivo ntp.conf"
-					 #Fazendo o backup do arquivos de configuração do NTP Server
-					 mv -v /etc/ntp.conf /etc/ntp.conf.old >> $LOG
-					 echo -e "Backup do arquivo ntp.conf feito com sucesso!!!"
-					 sleep 2
-					 echo
-					 
-					 echo -e "Criando o arquivo ntp.drift"
-					 #Copiando o arquivo ntp.drift
-					 cp -v conf/ntp.drift /etc/ntp.drift >> $LOG
-					 #Adicionando o contéudo de 0.0 dentro do arquivo ntp.drift
-					 echo 0.0 > /etc/ntp.drift
-					 echo -e "Arquivo ntp.drift criado com sucesso!!!"
-					 sleep 2
-					 echo
-					 
-					 echo -e "Atualizando o arquivo ntp.conf"
-					 #Copiando o arquivo de configuração do NTP Server
-					 cp -v conf/ntp.conf /etc/ntp.conf >> $LOG
-					 echo -e "Arquivo atualizado com sucesso!!!"
-					 sleep 2
-					 echo
-					 
-					 echo -e "Parando o serviço do ntp server"
-					 #Parando o serviço do NTP Server para fazer a sua configuração
-					 sudo service ntp stop
-					 echo -e "Serviço parado com sucesso!!!"
-					 sleep 2
-					 echo 
-					 
-					 echo -e "Editando o arquivo /etc/ntp.conf para acescentar as informações de Servidores NTP"
-					 echo -e "Pressione <Enter> para editar o arquivo"
-					 read
-					 
-					 #Editando o arquivo ntp.conf
-					 vim /etc/ntp.conf
-					 
-					 echo
-					 echo -e "Arquivo ntp.conf editado com sucesso!!!"
-					 echo -e "Pressione <Enter> para continuar"
-					 read
-					 sleep 2
-					 clear
-					 
-					 echo -e "Atualizando Data/Hora do Servidor utilizando ntpdate"
-					 echo
-					 #Atualizando data/hora do servidor NTP.br
-					 #d=debug, q=query, u=unprivileged, v=verbose
-					 ntpdate -dquv $NTP
-					 #Iniciando o serviço do NTP Server
-					 sudo service ntp start
-					 echo
-					 echo -e "Data/Hora atualizada com sucesso!!!"
-					 sleep 2
-					 echo
-					 
-					 echo -e "Verificação dos servidores NTP"
-					 echo
-					 #Verificando as informações de Servidores NTP e seu sincronismo
-					 #p=print, n=all andress
-					 ntpq -pn
-					 echo
-					 echo -e "Verificação feita com sucesso!!!"
-					 sleep 2
-					 echo
-					 
-					 echo -e "Data/Hora do Hardware do servidor"
-					 #Verificando data/hora de hardware (BIOS)
-					 hwclock
-					 sleep 2
-					 
-					 echo
-					 echo -e "Data/Hora do Sistema Operacional do servidor"
-					 #Verificando data/hora de sistema operacional
-					 date
-					 sleep 2
-					 echo
-					 
-					 echo -e "NTP.CONF atualizado com sucesso!!!, pressione <Enter> para continuar com o script"
-					 read
-					 sleep 2
-					 clear
-					 echo ============================================================ >> $LOG
 
 					 echo -e "Editando o arquivo /etc/fstab para acrescentar as informações de ACL e XATTR"
 					 echo
